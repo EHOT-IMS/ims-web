@@ -1,54 +1,76 @@
+
 <!DOCTYPE html>
 <html lang="sk">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Spoľahlivá kamiónová preprava a logistické služby. IMS, s.r.o. Bratislava. Kontaktujte nás pre viac informácií.">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="Spoľahlivá kamiónová preprava a logistické služby. IMS, s.r.o. Bratislava. Kontaktujte nás pre viac informácií." />
     <title>IMS, s.r.o. - Preprava</title>
+
+    <!-- Link to external CSS -->
     <link rel="stylesheet" href="styles.css">
-    
+
+    <!-- Google fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@1,400;1,700&family=Assistant:wght@400;700&display=swap" rel="stylesheet">
-
+    
 </head>
 <body>
 
-    <header>
-        <div class="header-container">
-            <div class="header-left">
-                
-                <div class="logo-container">
-                    <div class="logo-circle"></div>
-                    <img src="images/logo.svg" alt="IMSg Logo" class="logo-img">
-                </div>
-                
-                <div class="info-group">
-                    <div class="company-details">
-                        <p><strong>IMS, s.r.o.</strong></p>
-                        <p><strong>IČO:</strong>55165192</p>
-                        <p><strong>Adresa:</strong> Nerudova 18082/1, 821 04</p>
-                        <p>Bratislava - Ružinov</p>
-                    </div>
-                    <div class="contact-info">
-                        <p><strong>Email:</strong> info.imssro@gmail.com</p>
-                        <p><strong>Tel.:</strong> +421 738 727 247</p>
-                    </div>
-                </div>
+<header>
+    <div class="header-container">
+        <div class="header-left">
+
+            <div class="logo-container" aria-hidden="true">
+                <div class="logo-circle"></div>
+                <img src="images/logo.svg" alt="IMSg Logo" class="logo-img">
             </div>
-            
-            <div class="header-buttons">
-                <a href="prep_poriadok\prep_poriadok_sk.pdf" class="btn" target="_blank" download="prep_poriadok_sk.pdf">Prepravný poriadok</a>
-                <a href="prep_poriadok\prep_poriadok_en.pdf" class="btn" target="_blank" download="prep_poriadok_en.pdf">Transport regulations</a>
+
+            <div class="info-group" aria-label="Company information">
+                <div class="company-details">
+                    <p><strong>IMS, s.r.o.</strong></p>
+                    <p><strong>IČO:</strong> 55165192</p>
+                    <p><strong>Adresa:</strong> Nerudova 18082/1, 821 04</p>
+                    <p>Bratislava - Ružinov</p>
+                </div>
+                <div class="contact-info">
+                    <p><strong>Email:</strong> info.imssro@gmail.com</p>
+                    <p><strong>Tel.:</strong> +421 951 317 628</p>
+                </div>
             </div>
         </div>
-    </header>
 
-    <main>
-        <section class="hero">
-            </section>
-    </main>
+        <div class="header-buttons">
+            <div class="language-buttons" role="tablist" aria-label="Language selection">
+                <button class="lang-btn active" data-lang="sk" onclick="changeLanguage('sk')">SK</button>
+                <button class="lang-btn" data-lang="en" onclick="changeLanguage('en')">EN</button>
+                <button class="lang-btn" data-lang="ru" onclick="changeLanguage('ru')">RU</button>
+            </div>
 
+            <a href="prep_poriadok/prep_poriadok_sk.pdf" class="btn" target="_blank" download="prep_poriadok_sk.pdf">Prepravný poriadok</a>
+            <a href="prep_poriadok/prep_poriadok_en.pdf" class="btn" target="_blank" download="prep_poriadok_en.pdf">Transport regulations</a>
+        </div>
+    </div>
+</header>
+
+<main>
+    <section class="hero" aria-hidden="true">
+        <div class="hero-content">
+            <p id="hero-about-us-text"></p>
+        </div>
+    </section>
+
+    <section class="about-us-section" aria-labelledby="about-title">
+        <div class="section-container">
+            <div class="about-content-grid" id="full-about-us-container">
+                <!-- content injected by script.js -->
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Link to external JS -->
+<script src="script.js" defer></script>
 </body>
-
 </html>
