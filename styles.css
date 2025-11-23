@@ -1,212 +1,240 @@
-/* --- Global Styles --- */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-html {
-    height: 100%;
-}
-
+/* --- Reset / Global --- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
 body {
-    /* Set Assistant as the default font */
     font-family: 'Assistant', Arial, sans-serif;
     line-height: 1.5;
-    height: 100%; 
+    height: 100%;
     display: flex;
-    flex-direction: column; 
-    overflow: hidden; 
+    flex-direction: column;
+    overflow-x: hidden;
+    color: #111;
+    background-color: #ffffff;
 }
+p { margin-bottom: 0.6rem; }
 
-p {
-    margin-bottom: 2px;
-}
-
-/* --- Header Styles --- */
+/* --- Header --- */
 header {
     background-color: #ffc400;
     color: #000;
-    padding: 15px 30px; /* Adjusted padding */
+    padding: 15px 30px;
     border-bottom: 1px solid #e0ac00;
-    flex-shrink: 0; /* Prevent header from shrinking */
-    position: relative; /* Needed for z-index */
+    position: relative;
     z-index: 10;
+    flex-shrink: 0;
 }
-
 .header-container {
     display: flex;
     justify-content: space-between;
-    align-items: center; /* Center items vertically */
+    align-items: center;
     flex-wrap: wrap;
-    width: 100%; /* Make container full width */
     gap: 20px;
+    width: 100%;
 }
-
 .header-left {
     display: flex;
-    align-items: center; /* Center logo and info vertically */
+    align-items: center;
     gap: 25px;
     flex-wrap: wrap;
 }
 
-/* --- New Logo Styles --- */
-
-/* 1. The container to hold both circle and image */
-.logo-container {
-    position: relative;
-    /* Set size based on the *larger* element (the image) */
-    width: 100px; /* Adjust as needed */
-    height: 100px; /* Adjust as needed */
-    flex-shrink: 0;
+/* Logo */
+.logo-container { 
+    position: relative; 
+    width: 100px; 
+    height: 100px; 
+    flex-shrink: 0; 
+    /* NEW: Add transition for hover effect */
+    transition: transform 0.3s ease; 
+}
+.logo-container:hover {
+    /* NEW: Subtle hover animation */
+    transform: scale(1.05) rotate(-3deg);
 }
 
-/* 2. The white circle (background) */
 .logo-circle {
     position: absolute;
-    /* Set size of the circle (smaller than the container) */
-    width: 70px; 
-    height: 70px;
+    width: 70px; height: 70px;
     background-color: #ffffff;
     border-radius: 50%;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    /* Center the circle inside the container */
-    top: 50%;
-    left: 30%;
+    top: 50%; left: 30%;
     transform: translate(-50%, -50%);
-    z-index: 1; /* Behind the image */
+    z-index: 1;
 }
-
-/* 3. The logo image (foreground) */
 .logo-img {
     position: absolute;
-    /* Set size of the image (same as container) */
-    width: 100px;
-    height: auto;
-    display: block;
-    /* Center the image inside the container */
-    top: 50%;
-    left: 50%;
+    width: 100px; height: auto;
+    top: 50%; left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 2; /* On top of the circle */
+    z-index: 2;
 }
 
-
-.info-group {
-    display: flex;
-    gap: 40px;
-    flex-wrap: wrap;
-    padding-left: 6rem; /* Add some space between logo and text */
-}
-
-.company-details,
-.contact-info {
-    /* Updated font styles */
+/* Info */
+.info-group { display: flex; gap: 40px; flex-wrap: wrap; padding-left: 6rem; }
+.company-details, .contact-info {
     font-family: 'Arimo', sans-serif;
     font-style: italic;
     font-size: 13px;
 }
 
-/* --- Header Buttons --- */
-.header-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    min-width: 200px;
+/* Header buttons */
+.header-buttons { display: flex; flex-direction: column; gap: 8px; min-width: 200px; }
+.language-buttons { display: flex; justify-content: flex-end; gap: 5px; margin-bottom: 5px; }
+.lang-btn {
+    background: none; border: 1px solid #000; color: #000;
+    padding: 3px 8px; font-size: 12px; cursor: pointer; border-radius: 3px;
+    transition: background-color .2s, color .2s; font-family: 'Assistant', sans-serif; font-weight: 700;
 }
+.lang-btn:hover { background-color: #000; color: #ffc400; }
+.lang-btn.active { background-color: #000; color: #ffc400; border-color: #000; }
 
 .btn {
-    display: block;
-    background-color: #000000;
-    color: #ffffff;
-    text-decoration: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    font-size: 14px;
-    text-align: center;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    
-    /* Updated font styles */
-    font-family: 'Assistant', sans-serif;
-    font-weight: 700; /* Use the bold weight we imported */
+    display: block; background-color: #000; color: #fff; text-decoration: none;
+    padding: 10px 15px; border-radius: 5px; font-size: 14px; text-align: center;
+    /* UPDATE: Ensure transition includes transform for the hover effect */
+    transition: background-color .3s ease, transform .2s ease;
+    font-family: 'Assistant', sans-serif; font-weight: 700;
+}
+.btn:hover { 
+    background-color: #333; 
+    transform: translateY(-2px); /* Lift button on hover */
 }
 
-.btn:hover {
-    background-color: #333;
-    transform: translateY(-2px);
-}
-
-/* --- Main & Hero Section --- */
-main {
+/* --- Main & Hero --- */
+/* --- Main & Hero --- */
+main { 
     flex-grow: 1; 
     position: relative; 
-    background-color: #333; 
+    /* CHANGE: Set main background to the same color as the body */
+    background-color: #f7f7f7; 
 }
 
 .hero {
-    height: 100%; 
+    /* Set a height that matches your thinner image's aspect ratio */
+    height: 550px; 
     position: relative;
     background-image: url('images/background.jpg');
-    background-size: cover;
+    
+    /* CHANGE: Use 'cover' to ensure the image fills the width and eliminates side bars */
+    background-size: cover; 
+    
     background-position: center;
     background-repeat: no-repeat;
 }
-
 .hero::before {
     content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        to right, 
-        rgba(0, 0, 0, 0.75) 10%, 
-        rgba(0, 0, 0, 0.5) 35%, 
-        rgba(0, 0, 0, 0) 65%
-    );
+    position: absolute; inset: 0;
+    /* OLD: background: linear-gradient(to right, rgba(0,0,0,0.75) 10%, rgba(0,0,0,0.5) 35%, rgba(0,0,0,0) 65%); */
+    /* NEW: Solid dark overlay with transparency */
+    background-color: rgba(0, 0, 0, 0.6); /* Adjust the last value (0.6) for desired darkness (0.0 - 1.0) */
     z-index: 1;
 }
+.hero-content {
+    position: absolute; top: 35%; left: 5%;
+    width: 45%; max-width: 600px; z-index: 2; color: #fff;
+    font-family: 'Assistant', sans-serif; line-height: 1.8; font-size: 22px;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
+}
+.hero-content p { margin: 0; }
 
-/* --- Responsive Design --- */
+/* --- About Us Section (cleaned, single definition) --- */
+.about-us-section { background-color: #ffffff; color: #333; padding: 50px 30px; }
+.section-container { max-width: 1200px; margin: 0 auto; font-family: 'Assistant', sans-serif; line-height: 1.6; }
+
+/* NEW CLASS: Enforce max width and horizontal centering for content (ADDED) */
+.centered-content-container {
+    max-width: 800px; /* Adjust this width as needed for your desired text block size */
+    margin: 0 auto;
+    text-align: left; /* Ensure text remains left-aligned within the centered block */
+}
+
+/* Grid container (MODIFIED: Removed grid display) */
+.about-content-grid { 
+    display: block; /* Change from grid to block for simple flow */
+    gap: 40px; 
+    /* grid-template-columns: 1fr; (No longer needed) */
+}
+
+/* Desktop: two-column layout (MODIFIED: Removed desktop grid rules) */
+@media (min-width: 901px) {
+    /* Removed: .about-content-grid { grid-template-columns: 2fr 1fr; } */
+    /* Removed: .main-about-text { grid-column: 1 / 2; } */
+    /* Removed: .secondary-about-text { grid-column: 2 / 3; } */
+}
+
+/* Main/secondary text blocks */
+.main-about-text, .secondary-about-text {
+    font-size: 16px; font-weight: 400; color: #222;
+}
+
+/* Headings within about text */
+#full-about-us-text h3,
+.about-content-grid h3 {
+    font-family: 'Assistant', sans-serif; font-weight: 700;
+    font-size: 20px; margin-top: 30px; margin-bottom: 10px; color: #000;
+    border-bottom: 2px solid #ffc400; padding-bottom: 5px;
+}
+
+/* Principles list: highlighted boxes (yellow accent) (MODIFIED: Simplified grid) */
+.principles-list {
+    list-style: none; padding-left: 0; margin-top: 15px; margin-bottom: 25px;
+    display: grid; grid-template-columns: 1fr; gap: 10px; /* Changed to 1fr for single column */
+}
+.principles-list li {
+    padding: 10px 15px; font-size: 16px; font-weight: 700; background-color: #fff9e6;
+    border-left: 4px solid #ffc400; border-radius: 4px;
+    /* NEW: Add transitions for interactive effects */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.principles-list li:hover {
+    /* NEW: Subtle lift and shadow on hover */
+    transform: translateY(-3px); 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+}
+
+/* Investor / partner box: always yellow (desktop + mobile) (MODIFIED: Centered and max-width added) */
+.investor-partner-box {
+    /* display:flex; flex-direction: column; align-items: center; text-align: center; */
+    background-color: #ffc400; color: #000; padding: 30px; border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
+    /* grid-column: 1 / -1; (Removed) */
+    max-width: 100%; /* Match main content width */
+    margin: 20px auto 0 auto; /* Center it */
+    /* NEW: Add transitions for interactive effects */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.investor-partner-box:hover {
+    /* NEW: Subtle lift and shadow on hover */
+    transform: translateY(-5px); 
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+.investor-partner-box h3 {
+    color: #000; margin-top: 0; border-bottom: 2px solid #000; padding-bottom: 5px;
+    margin-bottom: 15px; font-size: 24px;
+}
+.investor-partner-box p { font-size: 18px; line-height: 1.5; margin-bottom: 15px; }
+
+/* Mobile responsive tweaks */
 @media (max-width: 900px) {
-    body {
-        overflow: auto; 
-        height: auto;
+    body { overflow: auto; height: auto; }
+    main { flex-grow: 0; }
+    .hero { height: 60vh; }
+    .header-container { flex-direction: column; align-items: center; text-align: center; }
+    .header-left { flex-direction: column; align-items: center; }
+    .logo-container { margin-bottom: 15px; }
+    .info-group { flex-direction: column; gap: 15px; text-align: center; padding-left: 0; }
+    .header-buttons { width: 100%; max-width: 300px; align-items: center; }
+    .language-buttons { justify-content: center; }
+    .hero-content {
+        top: 50%; left: 50%; transform: translate(-50%, -50%);
+        width: 90%; max-width: none; text-align: center; font-size: 18px; line-height: 1.6;
     }
-
-    main {
-        flex-grow: 0; 
-    }
-
-    .hero {
-        height: 60vh; 
-    }
-
-    .header-container {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-
-    .header-left {
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .logo-container {
-        margin-bottom: 15px; 
-    }
-
-    .info-group {
-        flex-direction: column;
-        gap: 15px;
-        text-align: center;
-        padding-left: 0; 
-    }
-
-    .header-buttons {
-        width: 100%;
-        max-width: 300px;
-    }
+    .about-us-section { padding: 30px 15px; }
+    .about-content-grid { grid-template-columns: 1fr; gap: 20px; display: block; }
+    .centered-content-container { max-width: 100%; margin: 0; } /* Allow full width on mobile */
+    .principles-list { grid-template-columns: 1fr; }
+    .investor-partner-box { padding: 20px; max-width: 100%; margin: 20px auto 0 auto; }
+    .investor-partner-box h3 { font-size: 20px; }
+    .investor-partner-box p { font-size: 16px; }
 }
